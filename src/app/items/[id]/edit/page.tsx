@@ -83,7 +83,7 @@ export default function EditItemPage() {
             required
             maxLength={200}
             defaultValue={item.title}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900"
           />
         </div>
 
@@ -97,7 +97,7 @@ export default function EditItemPage() {
             rows={4}
             maxLength={2000}
             defaultValue={item.description || ""}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none bg-white text-gray-900"
           />
         </div>
 
@@ -116,7 +116,7 @@ export default function EditItemPage() {
               step="1"
               min="0"
               defaultValue={item.price ?? ""}
-              className="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+              className="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900"
             />
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function EditItemPage() {
             name="categoryId"
             required
             defaultValue={item.categoryId}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900"
           >
             {categories.map((cat) => (
               <option key={cat.id} value={cat.id}>

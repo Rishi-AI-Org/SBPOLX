@@ -47,7 +47,7 @@ export default async function BrowsePage({
             type="text"
             defaultValue={searchQuery}
             placeholder="Search items..."
-            className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+            className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900"
           />
           {categoryId && (
             <input type="hidden" name="category" value={categoryId} />

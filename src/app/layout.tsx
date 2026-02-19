@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased bg-gray-50 font-sans">
+    <html lang="en" style={{ colorScheme: "light" }}>
+      <body className="antialiased bg-gray-50 font-sans text-gray-900">
         <SessionProvider>
           <Navbar />
           {children}

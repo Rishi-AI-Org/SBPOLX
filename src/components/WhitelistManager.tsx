@@ -90,7 +90,7 @@ export default function WhitelistManager({
             type="email"
             required
             placeholder="student@institution.edu"
-            className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+            className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900"
           />
           <button
             type="submit"
@@ -118,7 +118,7 @@ export default function WhitelistManager({
             rows={6}
             required
             placeholder="Paste emails (one per line, or comma/semicolon separated)"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none mb-3"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none mb-3 bg-white text-gray-900"
           />
           <button
             type="submit"
