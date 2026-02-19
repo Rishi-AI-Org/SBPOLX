@@ -29,7 +29,7 @@ async function main() {
 
   // Whitelist emails - ADD YOUR STUDENT EMAILS HERE
   const allowedEmails = [
-    "admin@example.edu",
+    "mba24nikamrishikeshashokrao@iimsambalpur.ac.in",
     // Add more institutional emails below:
     // "student1@institution.edu",
     // "student2@institution.edu",
@@ -45,21 +45,22 @@ async function main() {
   console.log(`Whitelisted ${allowedEmails.length} emails`);
 
   // Create admin user
-  const adminEmail = "admin@example.edu";
-  const adminPassword = await bcrypt.hash("admin123", 12);
+  const adminEmail = "mba24nikamrishikeshashokrao@iimsambalpur.ac.in";
+  const adminPassword = await bcrypt.hash("Rishi@121123", 12);
   await prisma.user.upsert({
     where: { email: adminEmail },
-    update: {},
+    update: {
+      passwordHash: adminPassword,
+      isAdmin: true,
+    },
     create: {
       email: adminEmail,
       passwordHash: adminPassword,
-      displayName: "Admin",
+      displayName: "Rishikesh Nikam",
       isAdmin: true,
     },
   });
-  console.log(
-    `Admin user created: ${adminEmail} / admin123 (CHANGE THIS PASSWORD)`
-  );
+  console.log(`Admin user created: ${adminEmail}`);
 
   console.log("Seeding complete!");
 }
