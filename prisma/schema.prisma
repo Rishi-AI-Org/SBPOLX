@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model AllowedEmail {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  addedAt DateTime @default(now())
+
+  @@map("allowed_emails")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  displayName  String   @map("display_name")
+  isAdmin      Boolean  @default(false) @map("is_admin")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  items      Item[]
+  bids       Bid[]
+  categories Category[]
+
+  @@map("users")
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdBy Int?     @map("created_by")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  creator User?  @relation(fields: [createdBy], references: [id])
+  items   Item[]
+
+  @@map("categories")
+}
+
+model Item {
+  id          Int      @id @default(autoincrement())
+  sellerId    Int      @map("seller_id")
+  title       String
+  description String?
+  price       Float?
+  categoryId  Int      @map("category_id")
+  status      String   @default("active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  seller   User        @relation(fields: [sellerId], references: [id])
+  category Category    @relation(fields: [categoryId], references: [id])
+  images   ItemImage[]
+  bids     Bid[]
+
+  @@map("items")
+}
+
+model ItemImage {
+  id         Int      @id @default(autoincrement())
+  itemId     Int      @map("item_id")
+  url        String
+  isPrimary  Boolean  @default(false) @map("is_primary")
+  uploadedAt DateTime @default(now()) @map("uploaded_at")
+
+  item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@map("item_images")
+}
+
+model Bid {
+  id        Int      @id @default(autoincrement())
+  itemId    Int      @map("item_id")
+  bidderId  Int      @map("bidder_id")
+  amount    Float
+  createdAt DateTime @default(now()) @map("created_at")
+
+  item   Item @relation(fields: [itemId], references: [id])
+  bidder User @relation(fields: [bidderId], references: [id])
+
+  @@map("bids")
+}
