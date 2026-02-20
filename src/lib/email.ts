@@ -8,7 +8,7 @@ const APP_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
 export async function sendPasswordResetEmail(email: string, token: string) {
   const resetUrl = `${APP_URL}/reset-password?token=${token}`;
 
-  await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: FROM_EMAIL,
     to: email,
     subject: "Reset your Campus Market password",
@@ -26,4 +26,11 @@ export async function sendPasswordResetEmail(email: string, token: string) {
       </div>
     `,
   });
+
+  if (error) {
+    console.error("Resend email error:", error);
+    throw new Error(`Failed to send email: ${error.message}`);
+  }
+
+  console.log("Password reset email sent successfully:", data?.id);
 }
