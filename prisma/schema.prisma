@@ -23,6 +23,9 @@ model User {
   displayName  String   @map("display_name")
   isAdmin      Boolean  @default(false) @map("is_admin")
   createdAt    DateTime @default(now()) @map("created_at")
+  phoneNumber  String?  @map("phone_number")
+  hostelNumber String?  @map("hostel_number")
+  roomNumber   String?  @map("room_number")
 
   items      Item[]
   bids       Bid[]

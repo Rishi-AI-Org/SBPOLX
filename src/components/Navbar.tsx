@@ -28,6 +28,9 @@ export default function Navbar() {
               <Link href="/my-items" className="text-gray-700 hover:text-indigo-600 font-medium transition">
                 My Items
               </Link>
+              <Link href="/profile" className="text-gray-700 hover:text-indigo-600 font-medium transition">
+                Profile
+              </Link>
               <Link href="/categories" className="text-gray-700 hover:text-indigo-600 font-medium transition">
                 Categories
               </Link>
@@ -79,6 +82,9 @@ export default function Navbar() {
             </Link>
             <Link href="/my-items" onClick={() => setMenuOpen(false)} className="block text-gray-700 hover:text-indigo-600 font-medium">
               My Items
+            </Link>
+            <Link href="/profile" onClick={() => setMenuOpen(false)} className="block text-gray-700 hover:text-indigo-600 font-medium">
+              Profile
             </Link>
             <Link href="/categories" onClick={() => setMenuOpen(false)} className="block text-gray-700 hover:text-indigo-600 font-medium">
               Categories

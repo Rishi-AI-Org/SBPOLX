@@ -18,7 +18,16 @@ export default async function ItemDetailPage({
   const item = await prisma.item.findUnique({
     where: { id: Number(id) },
     include: {
-      seller: { select: { id: true, displayName: true, email: true } },
+      seller: {
+        select: {
+          id: true,
+          displayName: true,
+          email: true,
+          phoneNumber: true,
+          hostelNumber: true,
+          roomNumber: true,
+        },
+      },
       category: true,
       images: { orderBy: { isPrimary: "desc" } },
       bids: {
@@ -107,6 +116,37 @@ export default async function ItemDetailPage({
                   {item.category.name}
                 </Link>
               </p>
+              {session?.user &&
+                !isSeller &&
+                (item.seller.phoneNumber ||
+                  item.seller.hostelNumber ||
+                  item.seller.roomNumber) && (
+                  <div className="mt-3 p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+                    <p className="text-xs font-semibold text-indigo-700 mb-1.5 uppercase tracking-wide">
+                      Contact Seller
+                    </p>
+                    <div className="space-y-0.5">
+                      {item.seller.phoneNumber && (
+                        <p className="text-sm text-gray-700">
+                          <span className="text-gray-500">Phone: </span>
+                          {item.seller.phoneNumber}
+                        </p>
+                      )}
+                      {(item.seller.hostelNumber ||
+                        item.seller.roomNumber) && (
+                        <p className="text-sm text-gray-700">
+                          <span className="text-gray-500">Location: </span>
+                          {[
+                            item.seller.hostelNumber,
+                            item.seller.roomNumber,
+                          ]
+                            .filter(Boolean)
+                            .join(", Room ")}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
             </div>
             {item.status !== "active" && (
               <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium uppercase">
